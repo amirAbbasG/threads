@@ -1,9 +1,10 @@
 "use server"
+import {revalidatePath} from "next/cache";
 
 import {connectToDB} from "@/lib/mongoose";
 import Thread from "@/lib/models/thread.model";
 import User from "@/lib/models/user.model";
-import {revalidatePath} from "next/cache";
+import Community from "@/lib/models/community.model";
 
 interface CreateThreadInput {
     text: string,
@@ -23,11 +24,23 @@ export async function createThread({text, author, communityId, path}: CreateThre
     await connectToDB()
 
     try {
+        const communityIdObject = await Community.findOne(
+            {id: communityId},
+            {_id: 1}
+        );
+
+
         const thread = await Thread.create({
             text,
             author,
-            communityId
+            community: communityIdObject
         })
+
+        if (communityIdObject) {
+            await Community.findByIdAndUpdate(communityIdObject, {
+                $push: {threads: thread._id}
+            })
+        }
 
         await User.findByIdAndUpdate(author, {
             $push: {threads: thread._id}
@@ -57,6 +70,11 @@ export async function fetchPosts(pageNumber: number = 1, pageSize: number = 20) 
                     select: "_id id parentId name image"
                 }
             })
+            .populate({
+                path: "community",
+                model: Community,
+            })
+
 
         const totalCount = await Thread.countDocuments({parentId: {$in: [null, undefined]}})
         const posts = await postQuery.exec()
@@ -93,6 +111,11 @@ export async function fetchThreadById(threadId: string) {
                     }
                 ]
             })
+            .populate({
+                path: "community",
+                model: Community,
+                select: "_id id name image",
+            })
 
     } catch (e: any) {
         throw new Error(`Failed to fetch thread with id ${threadId}: ${e.message}`);
@@ -127,15 +150,21 @@ export async function fetchUserThreads(userId: string) {
             .populate({
                 path: "threads",
                 model: Thread,
-                populate: {
-                    path: "children",
-                    model: Thread,
-                    populate: {
-                        path: "author",
-                        model: User,
-                        select: "name image id"
-                    }
-                }
+                populate: [
+                    {
+                        path: "community",
+                        model: Community,
+                        select: "name id image _id", // Select the "name" and "_id" fields from the "Community" model
+                    },
+                    {
+                        path: "children",
+                        model: Thread,
+                        populate: {
+                            path: "author",
+                            model: User,
+                            select: "name image id"
+                        }
+                    }]
             })
     } catch (e: any) {
         throw new Error(`Failed to fetch user threads: ${e.message}`);

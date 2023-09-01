@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5205c509-d363-47f8-9b3f-51faaf17d62c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/(root)/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/app/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(root)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(root)/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(root)/communities/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(root)/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(root)/search/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/cards/ThreadCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/cards/ThreadCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/forms/PostThread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/forms/PostThread.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/ThreadsTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/ThreadsTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/threads.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/threads.actions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -48,7 +45,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/projects/next js/threads&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -95,7 +92,8 @@
       <workItem from="1693293062147" duration="4299000" />
       <workItem from="1693316011206" duration="7216000" />
       <workItem from="1693379439354" duration="11044000" />
-      <workItem from="1693462873746" duration="9265000" />
+      <workItem from="1693462873746" duration="14126000" />
+      <workItem from="1693550352691" duration="3722000" />
     </task>
     <servers />
   </component>

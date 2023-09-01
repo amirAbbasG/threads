@@ -5,16 +5,20 @@ import {usePathname, useRouter} from "next/navigation";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
+import {useOrganization} from "@clerk/nextjs";
 
 import {ThreadValidation} from "@/lib/validations/thread";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@components/ui/form";
 import {Button} from "@components/ui/button";
 import {Textarea} from "@components/ui/textarea";
 import {createThread} from "@/lib/actions/threads.actions";
+import {useState} from "react";
 
 const PostThread = ({userId}: { userId: string }) => {
     const router = useRouter()
     const pathname = usePathname()
+    const {organization} = useOrganization()
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(ThreadValidation),
@@ -25,17 +29,20 @@ const PostThread = ({userId}: { userId: string }) => {
     })
 
     const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+        setIsSubmitting(true)
         try {
             await createThread({
                 text: values.thread,
                 author: userId,
-                communityId: null,
+                communityId: organization ? organization?.id : null,
                 path: pathname
             })
 
             router.push("/")
         }catch (e) {
             console.log(e)
+        }finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -58,7 +65,7 @@ const PostThread = ({userId}: { userId: string }) => {
                     )}
                 />
 
-                <Button type='submit' className='bg-primary-500'>
+                <Button type='submit' className='bg-primary-500' disabled={isSubmitting}>
                     Post Thread
                 </Button>
             </form>
